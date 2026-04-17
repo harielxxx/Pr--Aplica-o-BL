@@ -1,0 +1,640 @@
+import { motion } from "framer-motion";
+import { CheckCircle, Target, TrendingUp, Users, Zap, BarChart3, Award } from "lucide-react";
+import heroImage from "@/assets/hero-bruno.png";
+const mentorImage = "https://lp.brunolobao.com.br/wp-content/uploads/2023/11/Design-sem-nome-45-819x1024.jpg";
+
+const CTA_URL = "https://form.respondi.app/KBVi3Rhi";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+function CTAButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <a
+      href={CTA_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-block bg-cta text-cta-foreground font-body font-bold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-lg hover:bg-cta-hover transition-all duration-300 animate-pulse-glow text-center leading-tight ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block font-body text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-gold mb-4">
+      {children}
+    </span>
+  );
+}
+
+function GoldDivider() {
+  return <div className="divider-gold w-16 mx-auto my-6" />;
+}
+
+/* ── HERO ── */
+function HeroSection() {
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img src={heroImage} alt="Bruno Lobão" className="w-full h-full object-cover object-right-top md:object-right-top object-[75%_top]" />
+        {/* Desktop overlay */}
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
+        {/* Mobile overlay — lighter to reveal more of the image */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background/85" />
+      </div>
+
+      {/* Top bar */}
+      <div className="absolute top-0 left-0 right-0 z-10">
+        <div className="bg-secondary/80 backdrop-blur-sm border-b border-gold-subtle">
+          <p className="text-center py-3 px-4 font-body text-xs md:text-sm tracking-[0.15em] uppercase text-gold-light font-medium">
+            Exclusivo para Experts, Mentores e Empreendedores que desejam escalar rápido
+          </p>
+        </div>
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-28 pb-20">
+        <motion.div
+          className="max-w-2xl"
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
+        >
+          {/* Trust badges */}
+          <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-2 bg-secondary/60 backdrop-blur-sm border border-gold-subtle rounded-full px-4 py-1.5">
+              <div className="w-2 h-2 rounded-full bg-cta" />
+              <span className="font-body text-xs text-muted-foreground">+200 empresários atendidos</span>
+            </div>
+            <div className="hidden md:flex items-center gap-2 bg-secondary/60 backdrop-blur-sm border border-gold-subtle rounded-full px-4 py-1.5">
+              <span className="font-body text-xs text-muted-foreground">Método validado</span>
+            </div>
+          </motion.div>
+
+          <motion.h1
+            variants={fadeUp}
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-bold leading-[1.15] mb-6"
+          >
+            Vamos te ajudar a Estruturar uma{" "}
+            <span className="text-gold-gradient">Oferta de Alto Ticket</span>, Atrair Leads Qualificados e implementar um processo{" "}
+            <span className="text-gold-gradient">Comercial Escalável</span> para atingir{" "}
+            <span className="text-gold-gradient">100k/mês</span>
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="font-body text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl"
+          >
+            Sem que isso tudo dependa diretamente do seu tempo, mesmo que você esteja começando agora.
+          </motion.p>
+
+          <motion.div variants={fadeUp}>
+            <CTAButton>
+              Agendar Minha Reunião Estratégica →
+            </CTAButton>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── AVISO ── */
+function AvisoSection() {
+  return (
+    <section className="relative py-6 bg-secondary border-y border-gold-subtle">
+      <div className="container mx-auto px-4 text-center">
+        <p className="font-body text-sm md:text-base text-foreground">
+          <span className="font-bold text-gold">AVISO:</span>{" "}
+          No final da aplicação você terá uma Aula sobre como faturar os seus primeiros{" "}
+          <span className="font-semibold text-foreground">R$ 1 Milhão com Mentorias</span>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── O QUE VAMOS ABORDAR ── */
+const topics = [
+  {
+    icon: Target,
+    title: "5 Tipos de Anúncios",
+    desc: "Necessários para qualificar leads, gerar desejo e convencer até mesmo os leads frios",
+  },
+  {
+    icon: Users,
+    title: "Perfil que Inspira",
+    desc: "Como estruturar um Perfil que inspira e gera desejo (método 3Ps)",
+  },
+  {
+    icon: TrendingUp,
+    title: "Oferta High Ticket",
+    desc: "A Estrutura de uma Oferta que custa de 2x a 10x mais — mesmo vendendo em grupo",
+  },
+  {
+    icon: BarChart3,
+    title: "5 Funis Validados",
+    desc: "Os funis que utilizamos para faturar de 200 a 250 mil por mês e lucrar acima de 100k",
+  },
+  {
+    icon: Zap,
+    title: "Delegue suas Vendas",
+    desc: "Como delegar as vendas da sua Mentoria e não ficar escravo de reuniões",
+  },
+];
+
+function TopicsSection() {
+  return (
+    <section className="py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-4 md:px-8">
+        <motion.div
+          className="text-center mb-14"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionLabel>Reunião Estratégica</SectionLabel>
+          </motion.div>
+          <motion.h2 variants={fadeUp} className="font-display text-2xl md:text-4xl font-bold mb-2">
+            O que vamos abordar nessa Reunião
+          </motion.h2>
+          <GoldDivider />
+        </motion.div>
+
+        <div className="flex flex-wrap justify-center gap-5 max-w-5xl mx-auto">
+          {topics.map((t, i) => (
+            <motion.div
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeUp}
+              className="bg-gradient-card border border-gold-subtle rounded-xl p-6 md:p-7 shadow-card hover:shadow-glow-gold transition-shadow duration-300 w-full md:w-[calc(33.333%-1.25rem)]"
+            >
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <t.icon className="w-5 h-5 text-gold" />
+              </div>
+              <h3 className="font-display text-lg font-semibold mb-2 text-foreground">{t.title}</h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── RESULTADOS / PROOF ── */
+const proofImages = [
+  "https://lp.brunolobao.com.br/wp-content/uploads/2024/10/LCLS_2281-596x1024.png",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2024/10/LCLS_2284-1-e1737313570316.png",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2024/10/LCLS_2283.png",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2024/10/LCLS_2282.png",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2026/01/IMG_4457-2-665x1024.jpg",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2026/01/IMG_2763.jpg",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2026/01/IMG_4500.jpg",
+  "https://lp.brunolobao.com.br/wp-content/uploads/2026/01/IMG_4506.jpg",
+];
+
+const proofVideos = [
+  "https://www.youtube-nocookie.com/embed/7DR5dMkFqF8",
+  "https://www.youtube-nocookie.com/embed/enXjcAMg1dk",
+  "https://www.youtube-nocookie.com/embed/HzAjAKIbZ8E",
+  "https://www.youtube-nocookie.com/embed/uodOrLtSSNM",
+  "https://www.youtube-nocookie.com/embed/2HkOlODP3dw",
+  "https://www.youtube-nocookie.com/embed/ghupT_77sfU",
+  "https://www.youtube-nocookie.com/embed/-1CmSwVg5bg",
+  "https://www.youtube-nocookie.com/embed/2r2j5AxGEOQ",
+  "https://www.youtube-nocookie.com/embed/NVUo5mrmNZQ",
+  "https://www.youtube-nocookie.com/embed/Xim4CU-eZYk",
+  "https://www.youtube-nocookie.com/embed/Y6L_ucsuOwA",
+  "https://www.youtube-nocookie.com/embed/zoYv-1Y7Dos",
+];
+
+function ResultsSection() {
+  return (
+    <section className="py-20 md:py-28 bg-surface-elevated">
+      <div className="container mx-auto px-4 md:px-8">
+        <motion.div
+          className="text-center mb-14"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionLabel>Resultados Comprovados</SectionLabel>
+          </motion.div>
+          <motion.h2 variants={fadeUp} className="font-display text-2xl md:text-4xl font-bold mb-2">
+            Alguns resultados gerados por esses Funis
+          </motion.h2>
+          <GoldDivider />
+          <motion.p variants={fadeUp} className="font-body text-muted-foreground mt-4 max-w-lg mx-auto text-sm md:text-base">
+            Resultados reais de empresários que aplicaram o método e escalaram seus negócios
+          </motion.p>
+        </motion.div>
+
+        {/* Proof screenshots */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          {proofImages.map((src, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className="rounded-xl overflow-hidden border border-gold-subtle shadow-card hover:shadow-glow-gold transition-shadow duration-300 bg-gradient-card"
+            >
+              <img
+                src={src}
+                alt={`Resultado ${i + 1}`}
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Proof videos */}
+        <motion.div
+          className="text-center mt-16 mb-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
+          <SectionLabel>Resultados</SectionLabel>
+          <h3 className="font-display text-xl md:text-3xl font-bold mb-2">Depoimentos em Vídeo</h3>
+          <GoldDivider />
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          {proofVideos.map((src, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className="rounded-xl overflow-hidden border border-gold-subtle shadow-card hover:shadow-glow-gold transition-shadow duration-300 bg-gradient-card"
+            >
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  src={src}
+                  title={`Depoimento ${i + 1}`}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="text-center mt-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
+          <CTAButton>
+            Quero Resultados Como Esses →
+          </CTAButton>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── PARA QUEM É ── */
+const audiences = [
+  {
+    icon: TrendingUp,
+    title: "Já vende High Ticket",
+    desc: "Mas está travado na atração de clientes qualificados e interessados no seu produto",
+  },
+  {
+    icon: Zap,
+    title: "Já tem produto de baixo ticket",
+    desc: "E deseja plugar Ofertas e Funis High Ticket para aumentar a Lucratividade do Negócio",
+  },
+  {
+    icon: Target,
+    title: "Ainda não tem Oferta High Ticket",
+    desc: "Mas deseja criar e começar a vender nos próximos dias",
+  },
+];
+
+function AudienceSection() {
+  return (
+    <section className="py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-4 md:px-8">
+        <motion.div
+          className="text-center mb-14"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionLabel>Qualificação</SectionLabel>
+          </motion.div>
+          <motion.h2 variants={fadeUp} className="font-display text-2xl md:text-4xl font-bold mb-2">
+            Para quem é o nosso Programa?
+          </motion.h2>
+          <GoldDivider />
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          {audiences.map((a, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className="bg-gradient-card border border-gold-subtle rounded-xl p-7 text-center shadow-card hover:shadow-glow-gold transition-shadow duration-300"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                <a.icon className="w-6 h-6 text-gold" />
+              </div>
+              <h3 className="font-display text-lg font-semibold mb-3 text-foreground">{a.title}</h3>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">{a.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── BENEFÍCIOS / ACELERAÇÃO ── */
+const benefits = [
+  {
+    icon: Zap,
+    title: "Reduza Tentativa e Erro",
+    desc: "Obtenha modelos de funil comprovados que já passaram por dezenas de otimizações.",
+  },
+  {
+    icon: Award,
+    title: "Aumente seu Impacto",
+    desc: "Seja reconhecido no mercado e faça com que todos do seu nicho saibam quem você é.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Alta Lucratividade em Tráfego",
+    desc: "Tenha confiança para investir em tráfego e obtenha alta lucratividade com os funis certos.",
+  },
+  {
+    icon: Target,
+    title: "Funil Certo para seu Negócio",
+    desc: "Os funis do Método possuem vários modelos adaptados para diferentes produtos e nichos.",
+  },
+  {
+    icon: BarChart3,
+    title: "Aumente seu ROI",
+    desc: "Estratégias projetadas para gerar alta lucratividade e te posicionar como nº 1 do nicho.",
+  },
+  {
+    icon: CheckCircle,
+    title: "Resultados Rápidos",
+    desc: "Implemente os ensinamentos e comece a colher os frutos ainda nessa semana.",
+  },
+];
+
+function BenefitsSection() {
+  return (
+    <section className="py-20 md:py-28 bg-surface-elevated">
+      <div className="container mx-auto px-4 md:px-8">
+        <motion.div
+          className="text-center mb-14"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionLabel>Programa de Aceleração</SectionLabel>
+          </motion.div>
+          <motion.h2 variants={fadeUp} className="font-display text-2xl md:text-4xl font-bold mb-2">
+            Com o nosso programa você conseguirá
+          </motion.h2>
+          <GoldDivider />
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          {benefits.map((b, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className="flex gap-4 bg-gradient-card border border-gold-subtle rounded-xl p-6 shadow-card hover:shadow-glow-gold transition-shadow duration-300"
+            >
+              <div className="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center">
+                <b.icon className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h3 className="font-display text-base font-semibold mb-1 text-foreground">{b.title}</h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="text-center mt-14"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
+          <CTAButton>
+            Agendar Minha Reunião Estratégica →
+          </CTAButton>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── MENTOR ── */
+function MentorSection() {
+  return (
+    <section className="py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-4 md:px-8">
+        <motion.div
+          className="text-center mb-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
+          <SectionLabel>Conheça seu Mentor</SectionLabel>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col md:flex-row items-center gap-10 md:gap-16 max-w-5xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp} className="w-full md:w-2/5 shrink-0">
+            <div className="relative rounded-2xl overflow-hidden border border-gold-subtle shadow-premium">
+              <img
+                src={mentorImage}
+                alt="Bruno Lobão"
+                className="w-full h-auto"
+                loading="lazy"
+                width={800}
+                height={1000}
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-6">
+                <h3 className="font-display text-2xl font-bold">
+                  Bruno <span className="text-gold-gradient">Lobão</span>
+                </h3>
+                <p className="font-body text-sm text-muted-foreground">Estrategista de Negócios Digitais</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="flex-1">
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">
+              Especialista em Vendas de <span className="text-gold-gradient">Alto Valor</span>
+            </h2>
+            <div className="space-y-4 font-body text-sm md:text-base text-muted-foreground leading-relaxed">
+              <p>
+                Bruno Lobão é estrategista de negócios digitais especializado em Vendas de Alto Valor. Ama viagens, fotografia e experiências marcantes.
+              </p>
+              <p>
+                Já foi dono de agência publicitária e co-produtor de outros experts seguindo sistemas de lançamentos e produção de conteúdo.
+              </p>
+              <p>
+                Tudo mudou quando encontrou uma maneira de ganhar mais, se esforçando muito menos, através das{" "}
+                <span className="text-foreground font-medium">Mentorias High Ticket</span>.
+              </p>
+              <p>
+                Esse caminho estava longe de ser fácil, e o Bruno compartilha abertamente suas provações, após ir à falência com seus negócios digitais, reergueu tudo com novos sistemas de vendas e aquisição de clientes. Agora está em uma missão para ajudar pessoas a{" "}
+                <span className="text-foreground font-medium">cobrar o que valem</span> e arrasar com vendas de alto valor.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-4 mt-8">
+              <div className="bg-gradient-card border border-gold-subtle rounded-lg px-5 py-3 text-center">
+                <p className="font-display text-xl font-bold text-gold">200k+</p>
+                <p className="font-body text-xs text-muted-foreground">Faturamento/mês</p>
+              </div>
+              <div className="bg-gradient-card border border-gold-subtle rounded-lg px-5 py-3 text-center">
+                <p className="font-display text-xl font-bold text-gold">200+</p>
+                <p className="font-body text-xs text-muted-foreground">Empresários</p>
+              </div>
+              <div className="bg-gradient-card border border-gold-subtle rounded-lg px-5 py-3 text-center">
+                <p className="font-display text-xl font-bold text-gold">5+</p>
+                <p className="font-body text-xs text-muted-foreground">Funis Validados</p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FINAL CTA ── */
+function FinalCTASection() {
+  return (
+    <section className="py-20 md:py-28 bg-surface-elevated relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold blur-[150px]" />
+      </div>
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <motion.div
+          className="max-w-2xl mx-auto text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionLabel>Próximo Passo</SectionLabel>
+          </motion.div>
+          <motion.h2 variants={fadeUp} className="font-display text-2xl md:text-4xl font-bold mb-4">
+            Pronto para destravar a sua <span className="text-gold-gradient">Escala</span>?
+          </motion.h2>
+          <motion.p variants={fadeUp} className="font-body text-muted-foreground mb-10 text-sm md:text-base max-w-lg mx-auto">
+            Agende sua reunião estratégica agora e descubra como podemos te ajudar a atingir 100k/mês com um processo comercial escalável.
+          </motion.p>
+          <motion.div variants={fadeUp}>
+            <CTAButton className="text-lg md:text-xl px-10 md:px-14 py-5 md:py-6">
+              Clique Aqui para Agendar sua Reunião →
+            </CTAButton>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FOOTER ── */
+function Footer() {
+  return (
+    <footer className="py-8 bg-background border-t border-border">
+      <div className="container mx-auto px-4 text-center">
+        <p className="font-body text-xs text-muted-foreground mb-3">
+          Esta apresentação fornecerá etapas práticas para escalar um negócio digital. Os resultados não são garantidos ou típicos. Na verdade, muito trabalho duro está envolvido. Ao final da sessão estratégica, será oferecida uma oportunidade de aprender mais.
+        </p>
+        <p className="font-body text-sm text-muted-foreground">
+          <span className="font-display font-bold">BRUNO</span>{" "}
+          <span className="font-display font-bold text-gold-gradient">LOBÃO</span>
+        </p>
+        <p className="font-body text-xs text-muted-foreground mt-1">
+          © {new Date().getFullYear()} — Todos os direitos reservados
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+/* ── MAIN PAGE ── */
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <HeroSection />
+      <AvisoSection />
+      <TopicsSection />
+      <ResultsSection />
+      <AudienceSection />
+      <BenefitsSection />
+      <MentorSection />
+      <FinalCTASection />
+      <Footer />
+    </div>
+  );
+}
